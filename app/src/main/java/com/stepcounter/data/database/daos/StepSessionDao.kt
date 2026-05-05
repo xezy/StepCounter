@@ -23,7 +23,7 @@ interface StepSessionDao {
     suspend fun getTodaySessions(startOfDay: Long, endOfDay: Long): List<StepSessionEntity>
 
     @Query("SELECT SUM(steps) FROM step_sessions WHERE startTime >= :startOfDay AND startTime < :endOfDay")
-    suspend fun getTodaySteps(startOfDay: Long, endOfDay: Long): Int?
+    fun getTodaySteps(startOfDay: Long, endOfDay: Long): Flow<Int?>
 
     @Query("DELETE FROM step_sessions WHERE endTime < :cutoffTime")
     suspend fun deleteOldSessions(cutoffTime: Long)
