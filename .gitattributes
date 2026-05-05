@@ -1,0 +1,6 @@
+# Normalize line endings
+* text=auto
+
+# Force bash scripts to LF
+*.sh text eol=lf
+gradlew text eol=lf
