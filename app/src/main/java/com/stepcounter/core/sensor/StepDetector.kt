@@ -4,6 +4,7 @@ import com.stepcounter.domain.model.Gender
 import com.stepcounter.domain.model.StepEvent
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlin.math.abs
 
 class StepDetector(
     private val userHeight: Float,

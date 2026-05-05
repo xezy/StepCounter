@@ -79,7 +79,7 @@ dependencies {
     implementation("com.google.android.gms:play-services-location:21.1.0")
 
     // Charts - Vico
-    implementation("com.patrykandpatrick.vico:compose:1.13.1")
+    implementation("com.patrykandpatrick.vico:compose-m3:1.13.1")
     implementation("com.patrykandpatrick.vico:core:1.13.1")
 
     // Coroutines

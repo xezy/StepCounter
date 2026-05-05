@@ -7,6 +7,7 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -23,7 +24,7 @@ data class GpsFix(
 )
 
 class LocationTracker(context: Context) {
-    private val client = FusedLocationProviderClient(context)
+    private val client = LocationServices.getFusedLocationProviderClient(context)
 
     private val _locationUpdates = MutableSharedFlow<GpsFix>(extraBufferCapacity = 1)
     val locationUpdates = _locationUpdates.asSharedFlow()
