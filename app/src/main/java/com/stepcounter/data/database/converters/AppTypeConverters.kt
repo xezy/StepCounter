@@ -3,7 +3,7 @@
 import androidx.room.TypeConverter
 import com.stepcounter.domain.model.Gender
 
-class TypeConverters {
+class AppTypeConverters {
     @TypeConverter
     fun fromGender(value: Gender): String = value.name
 

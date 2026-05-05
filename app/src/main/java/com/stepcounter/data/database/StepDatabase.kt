@@ -3,7 +3,7 @@
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.stepcounter.data.database.converters.TypeConverters
+import com.stepcounter.data.database.converters.AppTypeConverters
 import com.stepcounter.data.database.daos.DailySummaryDao
 import com.stepcounter.data.database.daos.StepSessionDao
 import com.stepcounter.data.database.daos.UserProfileDao
@@ -20,7 +20,7 @@ import com.stepcounter.data.database.entities.UserProfileEntity
     version = 1,
     exportSchema = true
 )
-@TypeConverters(TypeConverters::class)
+@TypeConverters(AppTypeConverters::class)
 abstract class StepDatabase : RoomDatabase() {
     abstract fun userProfileDao(): UserProfileDao
     abstract fun stepSessionDao(): StepSessionDao
