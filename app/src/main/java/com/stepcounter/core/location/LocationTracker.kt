@@ -36,16 +36,16 @@ class LocationTracker(context: Context) {
     private val locationCallback = object : LocationCallback() {
         override fun onLocationResult(result: LocationResult) {
             result.lastLocation?.let { location ->
-                if (isValidFix(location)) {
-                    val fix = GpsFix(
-                        latitude = location.latitude,
-                        longitude = location.longitude,
-                        accuracy = location.accuracy,
-                        speed = location.speed,
-                        timestamp = location.time
-                    )
-                    _locationUpdates.tryEmit(fix)
-                }
+                if (!isValidFix(location)) return
+
+                val fix = GpsFix(
+                    latitude = location.latitude,
+                    longitude = location.longitude,
+                    accuracy = location.accuracy,
+                    speed = location.speed,
+                    timestamp = location.time
+                )
+                _locationUpdates.tryEmit(fix)
             }
         }
     }
