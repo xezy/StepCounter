@@ -12,13 +12,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.patrykandpatrick.vico.compose.CartesianChartHost
-import com.patrykandpatrick.vico.compose.axis.rememberBottomAxis
-import com.patrykandpatrick.vico.compose.axis.rememberStartAxis
-import com.patrykandpatrick.vico.compose.layer.rememberLineLayer
-import com.patrykandpatrick.vico.compose.rememberCartesianChart
-import com.patrykandpatrick.vico.core.cartesian.data.CartesianChartModelProducer
-import com.patrykandpatrick.vico.core.cartesian.data.lineSeries
+import com.patrykandpatrick.vico.compose.Chart
+import com.patrykandpatrick.vico.compose.chart.line.lineChart
+import com.patrykandpatrick.vico.compose.component.shape.chart.horizontalAxis
+import com.patrykandpatrick.vico.compose.component.shape.chart.verticalAxis
+import com.patrykandpatrick.vico.compose.model.rememberChartModelProducer
+import com.patrykandpatrick.vico.core.entry.ChartEntryModelProducer
+import com.patrykandpatrick.vico.core.entry.entryOf
 import com.stepcounter.domain.model.DailySummary
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -90,25 +90,20 @@ fun HistoryScreen(
 
 @Composable
 fun HistoryChart(history: List<DailySummary>) {
-    val modelProducer = remember { CartesianChartModelProducer() }
+    val modelProducer = rememberChartModelProducer()
 
     LaunchedEffect(history) {
         modelProducer.runTransaction {
-            lineSeries {
+            lineChart {
                 series(
-                    x = history.mapIndexed { index, _ -> index.toString() },
-                    y = history.map { it.totalSteps.toLong() }
+                    history.mapIndexed { index, _ -> entryOf(index.toFloat(), history[index].totalSteps.toFloat()) }
                 )
             }
         }
     }
 
-    CartesianChartHost(
-        chart = rememberCartesianChart(
-            rememberLineLayer(),
-            startAxis = rememberStartAxis(),
-            bottomAxis = rememberBottomAxis()
-        ),
+    Chart(
+        chart = lineChart(),
         modelProducer = modelProducer,
         modifier = Modifier
             .fillMaxWidth()
