@@ -12,13 +12,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.patrykandpatrick.vico.compose.Chart
-import com.patrykandpatrick.vico.compose.chart.line.lineChart
-import com.patrykandpatrick.vico.compose.component.shape.chart.horizontalAxis
-import com.patrykandpatrick.vico.compose.component.shape.chart.verticalAxis
-import com.patrykandpatrick.vico.compose.model.rememberChartModelProducer
-import com.patrykandpatrick.vico.core.entry.ChartEntryModelProducer
-import com.patrykandpatrick.vico.core.entry.entryOf
 import com.stepcounter.domain.model.DailySummary
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -66,10 +59,6 @@ fun HistoryScreen(
                 ) {
                     Text("30 Days")
                 }
-            }
-
-            if (uiState.history.isNotEmpty()) {
-                HistoryChart(history = uiState.history)
             }
 
             LazyColumn(

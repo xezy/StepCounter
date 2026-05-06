@@ -85,24 +85,18 @@ fun DashboardScreen(
 fun CircularStepIndicator(steps: Int, goal: Int) {
     val progress = if (goal > 0) steps.toFloat() / goal else 0f
 
-    Canvas(
-        modifier = Modifier
-            .size(200.dp)
-            .padding(16.dp)
+    Box(
+        modifier = Modifier.size(200.dp),
+        contentAlignment = Alignment.Center
     ) {
-        val strokeWidth = 16.dp.toPx()
-        val radius = (size.minDimension - strokeWidth) / 2
-        drawCircle(
-            color = MaterialTheme.colorScheme.surfaceVariant,
-            radius = radius,
-            style = androidx.compose.ui.graphics.drawscope.Stroke(strokeWidth)
+        androidx.compose.material3.CircularProgressIndicator(
+            progress = progress.coerceIn(0f, 1f),
+            modifier = Modifier.fillMaxSize(),
+            strokeWidth = 16.dp
         )
-        drawArc(
-            color = MaterialTheme.colorScheme.primary,
-            startAngle = -90f,
-            sweepAngle = 360 * progress.coerceIn(0f, 1f),
-            useCenter = false,
-            style = androidx.compose.ui.graphics.drawscope.Stroke(strokeWidth)
+        Text(
+            text = "$steps",
+            style = MaterialTheme.typography.headlineSmall
         )
     }
 }
