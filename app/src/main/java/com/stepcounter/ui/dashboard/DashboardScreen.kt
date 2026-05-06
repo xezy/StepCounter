@@ -29,10 +29,10 @@ fun DashboardScreen(
                 title = { Text("Step Counter") },
                 actions = {
                     IconButton(onClick = onNavigateToHistory) {
-                        Icon(Icons.Filled.History, contentDescription = "History")
+                        Text("History")
                     }
                     IconButton(onClick = onNavigateToSettings) {
-                        Icon(Icons.Filled.Settings, contentDescription = "Settings")
+                        Text("Settings")
                     }
                 }
             )
